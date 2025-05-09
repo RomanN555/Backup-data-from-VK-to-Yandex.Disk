@@ -94,6 +94,11 @@ def save_photos_to_json(photo_data, filename='photos.json'):
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(photo_data, f, indent=4)
 
+def save_result_json(result_list, filename='result.json'):
+    with open(filename, "w", encoding='utf-8') as f:
+        json.dump(result_list, f, indent=4)
+
+result_list = []
 user_id = '345046789'
 vk = VK(vk_access_token)
 top_photki = (vk.get_top_photos(user_id, count=5))
@@ -103,6 +108,11 @@ for photo in tqdm(top_photki,desc="Загрузка фото на диск" ):
 
     yd = Yandex_disk(yandex_oauth_token)
     response = yd.Yandex_to_disk(public_url=photo_url, name=photo_name)
-
-jsonchik = vk.get_top_photos(user_id, count=5)
-save_photos_to_json(jsonchik, 'photos.json')
+    result_list.append({
+        "file_name": photo_name,
+        "size": "z"
+    })
+    
+top_photki = vk.get_top_photos(user_id, count=5)
+save_photos_to_json(top_photki, 'photos.json')
+save_result_json(result_list)
