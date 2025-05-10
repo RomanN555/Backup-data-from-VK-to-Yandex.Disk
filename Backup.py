@@ -42,8 +42,6 @@ class VK:
     
     def get_top_photos(self, user_id, count=5):
         response = self.get_photos(user_id, count=5)
-        if 'response' not in response or 'items' not in response:
-            print("Ошибка, API не может дать фото") 
         photos = response['response']['items']
         photo_data = []
         print("Обработываем фотографии...")
