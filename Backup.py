@@ -5,9 +5,6 @@ from dotenv import load_dotenv
 import os
 from tqdm import tqdm
 import time
-load_dotenv()
-vk_access_token = os.getenv('VK_ACCESS_TOKEN')
-yandex_oauth_token = os.getenv('YANDEX_OAUTH_TOKEN')
 
 class VK:
     def __init__(self, access_token, version='5.131'):
@@ -95,6 +92,10 @@ def save_photos_to_json(photo_data, filename='photos.json'):
 def save_result_json(result_list, filename='result.json'):
     with open(filename, "w", encoding='utf-8') as f:
         json.dump(result_list, f, indent=4)
+
+load_dotenv()
+vk_access_token = os.getenv('VK_ACCESS_TOKEN')
+yandex_oauth_token = os.getenv('YANDEX_OAUTH_TOKEN')
 
 result_list = []
 user_id = '345046789'
